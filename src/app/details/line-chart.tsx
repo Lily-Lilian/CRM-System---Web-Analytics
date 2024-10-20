@@ -10,6 +10,7 @@ import {
   Legend,
   Title,
 } from "chart.js";
+import { format } from "date-fns";
 
 ChartJS.register(
   LinearScale,
@@ -20,11 +21,15 @@ ChartJS.register(
   Title
 );
 
-const LineChart = async({statistics}:any) => {
-  const visitors = statistics.map((stat:any) => stat.unique_visitors);
-  const bounceRate = statistics.map((stat:any) => stat.bounce_rate);
-  const averageSession = statistics.map((stat:any) => stat.avg_session_duration);
-  const dates = statistics.map((stat:any) => stat.date);
+const LineChart = async ({ statistics }: any) => {
+  const visitors = statistics.map((stat: any) => stat.unique_visitors);
+  const bounceRate = statistics.map((stat: any) => stat.bounce_rate);
+  const averageSession = statistics.map(
+    (stat: any) => stat.avg_session_duration
+  );
+  const dates = statistics.map((stat: any) =>
+    format(new Date(stat.date), "do-MMM")
+  );
 
   const chartData = {
     labels: dates,
@@ -32,29 +37,29 @@ const LineChart = async({statistics}:any) => {
       {
         data: visitors,
         label: "total visitors",
-        borderColor: "#012B30",
+        borderColor: "#3498db",
         borderWidth: 3,
-        tension:0.2,
+        tension: 0.2,
       },
       {
         data: bounceRate,
         label: "bounce rate",
-        borderColor: "#85EC68",
+        borderColor: "#f1948a",
         borderWidth: 3,
-        tension:0.2,
+        tension: 0.2,
       },
       {
-        data:  averageSession,
+        data: averageSession,
         label: "Average Session Duration",
-        borderColor: "#198A1",
+        borderColor: "#a569bd",
         borderWidth: 3,
-        tension:0.2,
+        tension: 0.2,
       },
     ],
   };
   return (
-    <div className=" flex items-center justify-center gap-6 p-8 bg-gray-100">
-      <div className="bg-white p-4 flex-grow mx-auto">
+    <div className="mx-auto">
+      <div className="bg-white">
         <Line data={chartData}></Line>
       </div>
     </div>

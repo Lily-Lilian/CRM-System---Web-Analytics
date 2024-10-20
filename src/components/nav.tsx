@@ -10,7 +10,7 @@ const Nav = () => {
         <ul className="flex gap-10">
           <li className="relative block">
             <Link
-              className={`link ${pathname === "/" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-1 before:block before:rounded-md before:h-full before:w-full active" : ""} inset-0 p-2 `}
+              className={`link ${pathname === "/" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-2 before:block before:rounded-md before:h-full before:w-full text-white active" : ""} inset-0 p-4 `}
               href="/"
             >
               Dashboard
@@ -18,18 +18,18 @@ const Nav = () => {
           </li>
           <li className="relative block">
             <Link
-              className={`link ${pathname === "/details" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-1 before:block before:rounded-md before:h-full before:w-full active" : ""} inset-0 p-2`}
+              className={`link ${pathname === "/details" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-2 before:block before:rounded-md before:h-full before:w-full text-white active" : ""} inset-0 p-4`}
               href="/details"
             >
-              Details
+              Visits
             </Link>
           </li>
           <li className="relative block">
             <Link
-              className={`link ${pathname === "/users" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-1 before:block before:rounded-md before:h-full before:w-full active" : ""} inset-0 p-2`}
+              className={`link ${pathname === "/users" ? "before:absolute before:content-[''] before:bg-cyan-500 before:z-[-1] before:scale-[1.2] before:-rotate-2 before:block before:rounded-md before:h-full before:w-full text-white active" : ""} inset-0 p-4`}
               href="/users"
             >
-              Customers
+              Visitors
             </Link>
           </li>
         </ul>

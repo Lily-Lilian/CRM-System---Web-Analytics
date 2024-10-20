@@ -19,15 +19,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} white`}>
-        <header className = "flex items-center justify-start gap-10 shadow-md">
+        <header className = "flex items-center justify-start gap-10 shadow-lg fixed top-0 w-full bg-white z-10">
           <img
             className="w-20 h-20 m-2"
             src="https://pbs.twimg.com/profile_images/1674021935754407937/K6MklT1G_400x400.jpg"
           ></img>
         <Nav/>
         </header>
-        <footer></footer>
-        {children}
+        <main className="mt-[96px]" >
+          {children}
+        </main>
       </body>
     </html>
   );

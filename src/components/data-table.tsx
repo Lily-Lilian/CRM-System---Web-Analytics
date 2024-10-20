@@ -37,22 +37,31 @@ import { useState } from "react";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  hideFilters?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  hideFilters,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [globalFilter, setGlobalFilter] = useState("");
+
   const table = useReactTable({
     data,
     columns,
     state: {
-      columnFilters,
+      globalFilter,
       sorting,
       columnVisibility,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: (row: any, columnId: any, filterValue: any) => {
+      const value = row.getValue(columnId) as string;
+      return value.toLowerCase().includes(filterValue.toLowerCase());
     },
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
@@ -66,21 +75,22 @@ export function DataTable<TData, TValue>({
   return (
     <>
       {/*table*/}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center py-4">
-          <Input
-            placeholder="Filter emails..."
-            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("email")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm"
-          />
+      {!hideFilters && (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center py-4">
+            <Input
+              placeholder="Filter by name or email..."
+              value={globalFilter}
+              onChange={(event) => {
+                table.setGlobalFilter(event.target.value);
+              }}
+              className="max-w-sm"
+            />
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
-                Columns
+                Show/ Hide
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -103,15 +113,19 @@ export function DataTable<TData, TValue>({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-      </div>
+        </div>
+      )}
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-cyan-500 hover:bg-cyan-500">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                className="bg-cyan-500 hover:bg-cyan-500"
+                key={headerGroup.id}
+              >
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead className="text-white" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -156,24 +170,26 @@ export function DataTable<TData, TValue>({
       </div>
 
       {/*pagination*/}
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
-      </div>
+      {!hideFilters && (
+        <div className="flex items-center justify-end space-x-2 py-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      )}
     </>
   );
 }
