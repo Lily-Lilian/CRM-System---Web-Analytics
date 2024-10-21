@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToogle from "./ui/theme-toogle";
 import Logo from "../assets/logo.svg";
+import Image from "next/image";
 // import Image from "next/image";
 
 const Nav = () => {
@@ -40,7 +41,13 @@ const Nav = () => {
         <div className="flex items-center gap-4 md:gap-10 justify-between h-24">
           <div className="flex items-center">
             <Link href="/">
-              <Logo className="w-[155px] md:w-[195px]" />
+              <Image
+                alt="dashboard logo"
+                src={"/logo.svg"}
+                width={155}
+                height={60}
+                className="w-[155px] md:w-[195px]"
+              />
             </Link>
           </div>
           <div className="hidden md:block">

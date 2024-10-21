@@ -1,16 +1,25 @@
-# Dashboard Project
+# Bouletteproof Website Analytics Dashboard
+
+<img width="1512" alt="Screenshot 2024-10-21 at 18 27 46" src="https://github.com/user-attachments/assets/beb5aa43-1e80-4fa4-931e-74d2ee980961">
+
+## Overview
 
 This project is a simple Next.js web application that displays website visit statistics and customer data from a CRM system using the Mockaroo API. It provides a landing page with aggregated data, detailed visit analysis with a graph, and a CRM customer data list with pagination and search functionality.
 
 ## Getting Started
 
-First, install the dependencies:
+First, clone the project and install the dependencies:
 
 ```bash
 npm install
 # or
 yarn install
 ```
+
+> NOTE:
+> add the .env.local file under the root directory for the api key set up:
+>
+> > Ex:MOCKAROO_API_KEY = 9fd29160
 
 Then, run the development server:
 
@@ -28,8 +37,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - `app/page.tsx`: The landing page with an overview of aggregated data.
 - `app/visits/page.tsx`: The detailed visit analysis page with a graph.
 - `app/visitors/page.tsx`: The CRM data list page with pagination and search functionality.
-- `app/api/visits/route.ts`: API route for fetching visit data.
-- `app/api/customers/route.ts`: API route for fetching customer data.
 
 ## API
 

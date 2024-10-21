@@ -24,16 +24,31 @@ ChartJS.register(
   Tooltip,
   Title
 );
+// Define the type for statistics items
+type Statistic = {
+  unique_visitors: number;
+  bounce_rate: number;
+  avg_session_duration: number;
+  date: string;
+};
 
-const LineChart = async ({ statistics }: any) => {
-  const visitors = statistics.map((stat: any) => stat.unique_visitors);
-  const bounceRate = statistics.map((stat: any) => stat.bounce_rate);
-  const averageSession = statistics.map(
-    (stat: any) => stat.avg_session_duration
-  );
-  const dates = statistics.map((stat: any) =>
-    format(new Date(stat.date), "do-MMM")
-  );
+interface LineChartProps {
+  statistics: Statistic[];
+}
+
+const LineChart = ({ statistics = [] }: LineChartProps) => {
+  const visitors =
+    statistics.length > 0 ? statistics.map((stat) => stat.unique_visitors) : [];
+  const bounceRate =
+    statistics.length > 0 ? statistics.map((stat) => stat.bounce_rate) : [];
+  const averageSession =
+    statistics.length > 0
+      ? statistics.map((stat) => stat.avg_session_duration)
+      : [];
+  const dates =
+    statistics.length > 0
+      ? statistics.map((stat) => format(new Date(stat.date), "do-MMM"))
+      : [];
 
   const chartData = {
     labels: dates,

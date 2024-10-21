@@ -1,8 +1,7 @@
 import LineChart from "./line-chart";
 
 const details = async () => {
-  // const apiKey = '9fd29160'
-  const apiKey = "de3ba150";
+  const apiKey = process.env.MOCKAROO_API_KEY;
   const res = await fetch(
     `https://my.api.mockaroo.com/statistics.json?key=${apiKey}&resetCache=true`
   );
