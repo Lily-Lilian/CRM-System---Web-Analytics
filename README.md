@@ -1,34 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dashboard Project
+
+This project is a simple Next.js web application that displays website visit statistics and customer data from a CRM system using the Mockaroo API. It provides a landing page with aggregated data, detailed visit analysis with a graph, and a CRM customer data list with pagination and search functionality.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `app/layout.tsx`: The main layout component used across all pages.
+- `app/page.tsx`: The landing page with an overview of aggregated data.
+- `app/visits/page.tsx`: The detailed visit analysis page with a graph.
+- `app/visitors/page.tsx`: The CRM data list page with pagination and search functionality.
+- `app/api/visits/route.ts`: API route for fetching visit data.
+- `app/api/customers/route.ts`: API route for fetching customer data.
 
-## Learn More
+## API
 
-To learn more about Next.js, take a look at the following resources:
+This project uses the Mockaroo API to simulate the website visit statistics and customer data. The API returns the following:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Website Visits Data:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Page views
+Unique visitors
+Bounce rate
+Average session duration
+CRM Customer Data:
 
-## Deploy on Vercel
+Customer name
+Email
+Signup date
+Last activityThis project uses the Mockaroo API to simulate the website visit statistics and customer data. The API returns the following:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Website Visits Data:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Page views
+Unique visitors
+Bounce rate
+Average session duration
+CRM Customer Data:
+
+Customer name
+Email
+Signup date
+Last activity
+
+## Features
+
+# Landing Page
+
+Displays an overview of aggregated metrics:
+Total visitors
+Bounce rate
+Average session duration
+
+# Detailed Visit Analysis
+
+A graph that shows the trends in website visits over the past 30 days.
+Implemented using Chart.js.
+
+# CRM Data List
+
+A table showing customer details such as name, email, signup date, and last activity.
+Supports:
+Pagination: Displays 10 customers per page.
+Search: Filters customers by name or email.
+
+## Technologies Used
+
+- Next.js
+- React
+- Tailwind CSS
+- shadcn/ui
+- chartjs
+
+## Deployment
+
+This project can be easily deployed on Vercel or any other platform that supports Next.js applications.
+
+```
+
+This README provides instructions on how to run the project locally and gives an overview of the project structure.
+```
